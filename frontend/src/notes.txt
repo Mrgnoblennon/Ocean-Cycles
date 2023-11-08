@@ -1,0 +1,9 @@
+The header component will need links to the other pages on the web app.
+
+These pages will include:
+    - Home
+    - About
+    - E-Bikes
+    - Prices
+    - Book Now
+    - Contact Us

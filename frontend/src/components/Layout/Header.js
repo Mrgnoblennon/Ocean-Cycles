@@ -1,12 +1,38 @@
 import React from 'react';
-import { Box, Heading } from '@chakra-ui/react';
+import { Box, Heading, Link, Flex, Spacer } from '@chakra-ui/react';
+
 
 const Header = () => {
   return (
-    <Box bg="blue.500" p={4} color="white">
+    <Box bg="blue.200" p={4} color="white" >
+
+      <Flex alignItems={"center"}>
       <Heading as="h1" size="xl">
-        Ocean Cycles
+        <Link to="/" color="white">
+          Ocean Cycles
+        </Link>
       </Heading>
+
+      <Spacer/>
+
+      <nav>
+        <Link href="/about" color="black" marginLeft={10} fontSize={"lg"}>
+          About
+        </Link>
+        <Link href="/ebikes" color="black" marginLeft={10} fontSize={"lg"}>
+          E Bikes
+        </Link>
+        <Link href="/prices" color="black" marginLeft={10} fontSize={"lg"}>
+          Prices
+        </Link>
+        <Link href="/booknow" color="black" marginLeft={10} fontSize={"lg"}>
+          Book Now
+        </Link>
+        <Link href="/contact" color="black" marginLeft={10} fontSize={"lg"}>
+          Contact Us
+        </Link>
+      </nav>
+      </Flex>
     </Box>
   );
 };

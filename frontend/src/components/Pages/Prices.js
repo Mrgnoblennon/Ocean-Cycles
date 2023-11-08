@@ -1,15 +1,14 @@
 import React from 'react';
 import { Box, Text } from '@chakra-ui/react';
 
-const Home = () => {
+const Prices = () => {
   return (
-    
     <Box bg="green.200" width={"100%"} minHeight={800}>
       <Text fontSize="3xl" fontWeight="bold" textAlign="center">
-        Home Page
+        Prices Page
       </Text>
     </Box>
   );
 };
 
-export default Home;
+export default Prices;
