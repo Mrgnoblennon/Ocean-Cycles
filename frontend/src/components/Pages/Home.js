@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, Heading, Image, Flex, Divider } from '@chakra-ui/react';
+import { Box, Text, Heading, Image, Flex } from '@chakra-ui/react';
 
 // Animation
 
