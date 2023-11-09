@@ -16,6 +16,9 @@ const Header = () => {
       <Spacer/>
 
       <nav>
+        <Link href="/" color="black" marginLeft={10} fontSize={"lg"}>
+          Home
+        </Link>
         <Link href="/about" color="black" marginLeft={10} fontSize={"lg"}>
           About
         </Link>
