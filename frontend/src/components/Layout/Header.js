@@ -28,7 +28,7 @@ const Header = () => {
         <Link href="/prices" color="black" marginLeft={10} fontSize={"lg"}>
           Prices
         </Link>
-        <Link href="/booknow" color="black" marginLeft={10} fontSize={"lg"}>
+        <Link href="/book" color="black" marginLeft={10} fontSize={"lg"}>
           Book Now
         </Link>
         <Link href="/contact" color="black" marginLeft={10} fontSize={"lg"}>
