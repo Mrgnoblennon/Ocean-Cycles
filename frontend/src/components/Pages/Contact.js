@@ -6,11 +6,11 @@ const Contact = ({ pageTitle }) => {
   return (
     <div>
       <SubHeader pageTitle={"Contact Us"}/>
-      <Box bg="green.200" width={"100%"} minHeight={800}>
+      <Box bg="green.200" width={"100%"} minHeight={800} p={70}>
         
-        <Text fontSize="3xl" fontWeight="bold" textAlign="center">
-          Contact Us Page
-        </Text>
+        <Box width={800} minHeight={300} bg={"yellow.200"} >
+
+        </Box>
 
       </Box>
     </div>

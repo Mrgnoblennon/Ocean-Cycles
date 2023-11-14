@@ -4,7 +4,7 @@ import { Box, Heading, Link, Flex, Spacer } from '@chakra-ui/react';
 
 const Header = () => {
   return (
-    <Box bg="blue.200" p={4} color="white" >
+    <Box bg="blue.200" p={4} color="white">
 
       <Flex alignItems={"center"}>
       <Heading as="h1" size="xl">

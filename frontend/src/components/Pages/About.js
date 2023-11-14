@@ -1,8 +1,16 @@
 import React from 'react';
-import { Box, Text, Image, Heading } from '@chakra-ui/react';
+import { Box, Text, Flex, Heading } from '@chakra-ui/react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import SubHeader from '../Layout/SubHeader';
+import Carousel from '../Animation/Carousel';
+
+const images = [
+  'https://framerusercontent.com/images/8tL9Ugx1oNnZz0n5DhdCUMZa88.jpg?scale-down-to=512',
+  'https://framerusercontent.com/images/cXOVRvtKBz4ycf04v44oZbVFpU.jpg?scale-down-to=512',
+  'https://framerusercontent.com/images/Eg5cXFrMatm4lGzj0KpJTnnTp0.jpg?scale-down-to=512',
+  // Add more image URLs as needed
+];
 
 const About = ( { pageTitle }) => {
 
@@ -11,27 +19,64 @@ const About = ( { pageTitle }) => {
     <div>
       <SubHeader pageTitle={"Get to Know Us"}/>
 
-      <Box bg="green.200" width={"100%"} minHeight={800} p={70}>
+      
+      <Flex width={"100%"} minHeight={800} p={70} direction={"column"} align={"center"}>
         
-        <motion.div
-        initial={{ opacity: 0, scale : 0.5 }}
-        animate={{ opacity: 1, scale : 1}}
-        transition={{
-          duration: 0.8,
-          delay: 0.5,
-          ease: [0, 0.71, 0.2, 1.01]
-        }}
-        >
+        {/* Welcome Box */}
+        <Flex align={"center"} justifyContent={"center"} mb={100}>
 
-          <Box bg={"purple.400"} borderRadius={20} width={300} height={300}/>
+          <Text fontSize={"2xl"} width={900} mr={400}>
+            Welcome to Ocean Cycles, your premier destination for eBike rentals in the 
+            vibrant heart of Fremantle, Perth! Nestled in this historic and lively community, 
+            we are passionate about providing a unique and eco-friendly way to explore the 
+            beauty of Perth and its surroundings.
+          </Text>
+
+          <Carousel borderWidth={2} borderColor="red" images={images} intervalDuration={10000} imageSize={250} /> 
           
+        </Flex>
 
-        </motion.div>
+        {/* Our Mission Box */}
+        <Flex align={"center"} mb={100}>
 
-        <Image/>
-        <Heading>Heading</Heading>
-        <Text>Text</Text>
-      </Box>
+          <Text fontSize={"2xl"} width={900} mr={400}>
+
+          <Heading mb={10}>
+            Our Mission
+          </Heading>
+           
+          At Ocean Cycles, our mission is to enhance your experience of Fremantle 
+          by offering convenient, sustainable, and exciting eBike rentals. We believe 
+          in the power of green transportation to not only explore the city but also 
+          contribute to a cleaner and greener environment.
+
+          </Text>
+          
+          <Carousel images={images} intervalDuration={8000} imageSize={250}/> 
+        </Flex>
+
+        {/* Discover Freo box */}
+        <Flex align={"center"}>
+
+          <Text fontSize={"2xl"} width={900} mr={400}>
+
+          <Heading mb={10}>
+            Discover Fremantle on Two Wheels
+          </Heading>
+           
+          Fremantle is not just a place; it's an experience waiting to be discovered. 
+          Our eBikes give you the freedom to explore its rich history, stunning 
+          architecture, and breathtaking coastal views at your own pace.
+
+          </Text>
+          
+          <Carousel images={images} intervalDuration={8000} imageSize={250}/> 
+        </Flex>
+
+        {/*  */}
+        <Text></Text>
+
+      </Flex>
     </div>
   );
 };

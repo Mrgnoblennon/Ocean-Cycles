@@ -10,7 +10,11 @@ const Book = ({ pageTitle}) => {
     <div>
       <SubHeader pageTitle={"Book Now"}/>
       <Box bg="green.200" width={"100%"} minHeight={800}>
-        <Carousel/>
+        
+        <Box width={300} height={1000} bg={"yellow.200"} >
+
+        </Box>
+
       </Box>
     </div>
   );
