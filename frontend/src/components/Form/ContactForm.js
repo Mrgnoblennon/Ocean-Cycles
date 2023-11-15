@@ -4,7 +4,7 @@ import { Box, Text, Heading, VStack, HStack, FormControl, FormLabel, Input, Text
 const ContactForm = () => {
   return (
     <div>
-      <Heading mb={8} color={"cyan.300"}>Send Us a Message</Heading>
+      <Heading mb={8} color={"blue.300"}>Send Us a Message</Heading>
 
       <Text fontSize={"lg"} mb={8}>Tell us about your need and we will get back to you as soon as possible!</Text>
 
