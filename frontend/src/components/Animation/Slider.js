@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Image, Text, Button, Box, Flex} from '@chakra-ui/react';
+import { Image, Text, Button, Box, Flex, Link } from '@chakra-ui/react';
 
 const slides = [
   {
@@ -9,6 +9,7 @@ const slides = [
     heading: 'Ocean Cycles',
     description: 'Looking for a Ride?',
     button: 'Book Now',
+    href: '/book',
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ const slides = [
     heading: 'Ocean Cycles',
     description: 'Check out our Pricing',
     button: 'Prices',
+    href: '/prices',
   },
   {
     id: 3,
@@ -23,6 +25,7 @@ const slides = [
     heading: 'Ocean Cycles',
     description: 'Want to get in Touch?',
     button: 'Contact Us',
+    href: '/contact',
   },
 ];
 
@@ -44,48 +47,56 @@ const Slider = () => {
   }, [currentSlide]);
 
   return (
-    <Box bg={"gray.500"} height="auto" mb={200}>
+    <Box bg={'gray.500'} height="auto" mb={200} position="relative">
       <AnimatePresence mode="wait">
-
-
-        <motion.img
+      <motion.div
           key={currentSlide}
-          src={slides[currentSlide].image}
-          alt={`Slide ${currentSlide + 1}`}
-          style={{width : "100%", height: 1000}}
-          initial={{ x: 2200}}
-          animate={{ x: 0}}
-          exit={{ x: -2200}}
-        />
+          style={{
+            position: 'relative',
+            width: '100%',
+            height: '1000px',
+            overflow: 'hidden',
+          }}
+          initial={{ x: currentSlide === 0 ? 0 : '100%' }}
+          animate={{ x: 0 }}
+          exit={{ x: currentSlide === slides.length - 1 ? '-100%' : '100%' }}
+          transition={{ ease: 'easeInOut', duration: 0.5 }}
+        >
+          <Image
+            src={slides[currentSlide].image}
+            alt={`Slide ${currentSlide + 1}`}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+          <Box
+            position="absolute"
+            top="0"
+            left="0"
+            width="100%"
+            height="100%"
+            bg="black"
+            opacity="0.5"
+          />
+        </motion.div>
 
-          <Flex direction={'column'} alignItems={'center'} position={"absolute"} top={80} left={"30%"}>
+        <Flex direction={'column'} alignItems={'center'} position={'absolute'} top={80} left={'30%'}>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }}>
+            <Text fontSize={'9xl'} fontWeight={'medium'} textColor={'white'} textShadow="0 0 20px black">
+              {slides[currentSlide].heading}
+            </Text>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay : 2}}
-            >
-             <Text fontSize={'9xl'} fontWeight={"medium"} textColor={"white"} textShadow='0 0 20px black'>{slides[currentSlide].heading}</Text>
-            </motion.div>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 3 }}>
+            <Text fontSize={'3xl'} fontWeight={'medium'} textColor={'white'} textShadow="0 0 20px black" mb={150}>
+              {slides[currentSlide].description}
+            </Text>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay : 3}}
-            >
-              <Text fontSize={'3xl'} fontWeight={"medium"} textColor={"white"} textShadow='0 0 20px black' mb={150}>{slides[currentSlide].description}</Text>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay : 4}}
-            >
-              <Button bg={"blue.500"}>{slides[currentSlide].button}</Button>
-            </motion.div>
-
-          </Flex>
-
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 4 }}>
+            <Link href={slides[currentSlide].href} style={{ textDecoration: 'none' }}>
+              <Button color="white" bg={'teal.600'}>{slides[currentSlide].button}</Button>
+            </Link>
+          </motion.div>
+        </Flex>
       </AnimatePresence>
     </Box>
   );

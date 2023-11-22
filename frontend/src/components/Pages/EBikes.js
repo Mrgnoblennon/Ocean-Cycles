@@ -14,6 +14,7 @@ const EBikes = ({ pageTitle }) => {
       <Box width={"100%"} minHeight={1000} px={100}>
 
         <Flex mb={100}>
+
           <EBikeCard
            imageSrc="https://www.oceancycles.com.au/wp-content/uploads/2020/11/tour-up-1-1024x649.jpg"
            pedalAssistance="5 levels"
@@ -28,7 +29,9 @@ const EBikes = ({ pageTitle }) => {
            netWeight="21-(22)kg"
            maxLoad="150kg"
            range="60-90 Kms"/>
+
           <Spacer/>
+
           <EBikeCard
            imageSrc="https://www.oceancycles.com.au/wp-content/uploads/2020/11/suv-up-1024x649.jpg"
            pedalAssistance="5 levels"
@@ -43,7 +46,9 @@ const EBikes = ({ pageTitle }) => {
            netWeight="21–(22)kg"
            maxLoad="150kg"
            range="60-90 Kms"/>
+
           <Spacer/>
+          
           <EBikeCard
            imageSrc="https://www.oceancycles.com.au/wp-content/uploads/2020/11/hipster-1-1024x649.jpg"
            pedalAssistance="5 levels"
