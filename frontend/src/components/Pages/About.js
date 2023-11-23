@@ -26,6 +26,11 @@ const About = ( { pageTitle }) => {
         <Flex align={"center"} justifyContent={"center"} mb={100}>
 
           <Text fontSize={"2xl"} width={900} mr={400}>
+
+            <Heading mb={10}>
+              Welcome
+            </Heading>
+
             Welcome to Ocean Cycles, your premier destination for eBike rentals in the 
             vibrant heart of Fremantle, Perth! Nestled in this historic and lively community, 
             we are passionate about providing a unique and eco-friendly way to explore the 

@@ -5,8 +5,6 @@ import SubHeader from '../Layout/SubHeader';
 
 import EBikeCard from '../Card/EBikeCard';
 
-import ContactInfo from '../Layout/ContactInfo'
-
 const EBikes = ({ pageTitle }) => {
   return (
     <div>
@@ -64,10 +62,6 @@ const EBikes = ({ pageTitle }) => {
            maxLoad="120kg"
            range="60-80 Kms"/>
         </Flex>
-
-        <Box width={800} minHeight={300}>
-          <ContactInfo/>
-        </Box>
 
       </Box>
     </div>

@@ -71,7 +71,7 @@ const Carousel = ({ images, intervalDuration, imageSize, carouselSize, ...props 
         ))}
 
         {/* Overlayed Buttons at the Bottom */}
-        <Flex position="absolute" bottom={3} left="50%" transform="translateX(-50%)">
+        <Flex position="absolute" bottom={1} left="50%" transform="translateX(-50%)">
           <HStack spacing={2}>
             {images.map((_, index) => (
               <Button

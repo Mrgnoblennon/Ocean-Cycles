@@ -74,7 +74,7 @@ const Slider = () => {
             width="100%"
             height="100%"
             bg="black"
-            opacity="0.5"
+            opacity="0.3"
           />
         </motion.div>
 
