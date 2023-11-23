@@ -12,7 +12,7 @@ const Home = () => {
 
     <Slider/>
 
-    <Box width={"100%"} minHeight={800} px={{base: 30}}>
+    <Box width={"100%"} minHeight={800} px={{base: 30 , md: 100}}>
       
       <Flex direction={{base: "column", md: "row"}} alignItems={"center"} justifyContent={"center"} mb={150}>
 

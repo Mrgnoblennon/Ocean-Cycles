@@ -20,17 +20,17 @@ const EBikeCard = (props) => {
   } = props;
 
   return (
-    <Box maxWidth="30%">
-      <Image width={"100%"} mb={70} src={imageSrc} />
-      <TableContainer maxWidth={"100%"} fontSize={"lg"}>
+    <Box maxWidth={{base: "100%", md: "30%"}} mb={{base: 50}}>
+      <Image width={"100%"} mb={{base: 30, md: 70}} src={imageSrc} />
+      <TableContainer maxWidth={"100%"}>
         <Table variant='simple'>
           <Thead>
             <Tr>
-              <Th fontSize={"xl"}>Model</Th>
-              <Th fontSize={"xl"}>{model}</Th>
+              <Th fontSize={{base: "sm", md: "xl"}}>Model</Th>
+              <Th fontSize={{base: "sm", md: "xl"}}>{model}</Th>
             </Tr>
           </Thead>
-          <Tbody>
+          <Tbody fontSize={{base: "sm", md: "xl"}}>
             <Tr>
               <Td>Pedal Assistance</Td>
               <Td>{pedalAssistance}</Td>

@@ -9,9 +9,9 @@ const EBikes = ({ pageTitle }) => {
   return (
     <div>
       <SubHeader pageTitle="Browse our Bikes"/>
-      <Box width={"100%"} minHeight={1000} px={100}>
+      <Box width={"100%"} minHeight={1000} px={{base: 30, md: 70}}>
 
-        <Flex mb={100}>
+        <Flex mb={100} direction={{base: "column", md: "row"}}>
 
           <EBikeCard
            imageSrc="https://www.oceancycles.com.au/wp-content/uploads/2020/11/tour-up-1-1024x649.jpg"

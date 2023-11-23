@@ -32,7 +32,7 @@ const About = ( { pageTitle }) => {
       <SubHeader pageTitle={"Get to Know Us"}/>
 
       
-      <Box width={"100%"} minHeight={800} p={{base: 30, md: 70}}>
+      <Box width={"100%"} minHeight={800} px={{base: 30 , md: 100}}>
         
         {/* Welcome Box */}
         <Flex align={"center"} justifyContent={{md: "center"}} direction={{base: "column", md: "row"}} mb={100}>
