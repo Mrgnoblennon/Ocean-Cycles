@@ -1,50 +1,41 @@
-// Carousel.js
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Box, Image, Flex, Button, Progress, HStack } from '@chakra-ui/react';
-
-
-
-
+import { Box, Image, Flex, Button, HStack } from '@chakra-ui/react';
 
 const Carousel = ({ images, intervalDuration, imageSize, carouselSize, ...props }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
+  let imageInterval;
 
   const handleDotClick = (index) => {
+    // Clear existing interval
+    clearInterval(imageInterval);
+
+    // Update current image index
     setCurrentImageIndex(index);
-    if (progress !== 100) { 
-      setProgress(0); 
-    } // Reset progress when changing images
+
+    // Start a new interval
+    startImageInterval();
+  };
+
+  const startImageInterval = () => {
+    imageInterval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, intervalDuration);
   };
 
   useEffect(() => {
-    let progressInterval;
-    let imageInterval;
-
-    // Automatically change image every intervalDuration milliseconds
-    imageInterval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-      if (progress !== 100) {
-        setProgress(0); // Reset progress when changing images
-      }
-    }, intervalDuration);
-
-    // Update the progress every 10 milliseconds based on interval duration
-    const progressIncrement = (10 / intervalDuration) * 100;
-    progressInterval = setInterval(() => {
-      setProgress((prevProgress) => Math.min(prevProgress + progressIncrement, 100));
-    }, 10);
+    // Start initial interval
+    startImageInterval();
 
     return () => {
+      // Clear interval on component unmount
       clearInterval(imageInterval);
-      clearInterval(progressInterval);
     };
 
-  }, []); // Empty dependency array ensures that the effect runs only once on component mount
+  }, [images, intervalDuration]); // Updated dependency array
 
   return (
-    <Flex direction={"column"}  {...carouselSize}>
+    <Flex position="relative" direction="column" {...carouselSize}>
 
       <Flex
         key={currentImageIndex}
@@ -54,20 +45,15 @@ const Carousel = ({ images, intervalDuration, imageSize, carouselSize, ...props 
         transition={{ duration: 1 }}
         mb={4}
         {...carouselSize}
+        position="relative"
       >
         {images.map((image, index) => (
-
-          <Box 
-            key={index} 
-            display={index === currentImageIndex ? 'block' : 'none'} 
-            position="relative" 
-            borderStyle={'solid'} 
-            borderWidth={30} 
-            borderRadius={30}
-            borderColor={"green.200"}
-            boxShadow={"xl"}
+          <Box
+            key={index}
+            display={index === currentImageIndex ? 'block' : 'none'}
+            position="relative"
+            boxShadow="2xl"
           >
-            
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -81,22 +67,25 @@ const Carousel = ({ images, intervalDuration, imageSize, carouselSize, ...props 
                 objectFit="cover"
               />
             </motion.div>
-            <Box position="absolute" bottom="0" left="0" right="0">
-              <Progress value={progress} colorScheme="purple" size="sm" />
-            </Box>
           </Box>
         ))}
+
+        {/* Overlayed Buttons at the Bottom */}
+        <Flex position="absolute" bottom={3} left="50%" transform="translateX(-50%)">
+          <HStack spacing={2}>
+            {images.map((_, index) => (
+              <Button
+                key={index}
+                borderRadius="full"
+                height={2}
+                onClick={() => handleDotClick(index)}
+                variant={currentImageIndex === index ? 'solid' : 'outline'}
+              ></Button>
+            ))}
+          </HStack>
+        </Flex>
+
       </Flex>
-
-      {/* Buttons */}
-
-      <HStack display={"none"} spacing={2} mt={2} alignItems="center" ml={"20%"}>
-        {images.map((_, index) => (
-          <Button borderRadius={"full"} size={"xs"} key={index} onClick={() => handleDotClick(index)} variant={currentImageIndex === index ? 'solid' : 'outline'}>
-            
-          </Button>
-        ))}
-      </HStack>
 
     </Flex>
   );

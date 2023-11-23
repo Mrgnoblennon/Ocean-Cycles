@@ -32,7 +32,7 @@ const About = ( { pageTitle }) => {
             beauty of Perth and its surroundings.
           </Text>
 
-          <Carousel borderWidth={2} borderColor="red" images={images} intervalDuration={10000} imageSize={250} /> 
+          <Carousel images={images} intervalDuration={8000} imageSize={250} /> 
           
         </Flex>
 
@@ -82,3 +82,5 @@ const About = ( { pageTitle }) => {
 };
 
 export default About;
+
+<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="18.19999999999999" role="progressbar" class="css-6f2xij" style="width: 18.2%;"></div>
