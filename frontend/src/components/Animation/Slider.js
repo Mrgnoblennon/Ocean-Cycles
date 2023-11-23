@@ -78,22 +78,22 @@ const Slider = () => {
           />
         </motion.div>
 
-        <Flex direction={'column'} alignItems={'center'} position={'absolute'} top={80} left={'30%'}>
+        <Flex direction={'column'} alignItems={'center'} position={'absolute'} top={{base: 40, md: 80}} left={{base: '22%', md: '30%'}}>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }}>
-            <Text fontSize={'9xl'} fontWeight={'medium'} textColor={'white'} textShadow="0 0 20px black">
+            <Text fontSize={{base: '4xl', md: '9xl'}} fontWeight={'medium'} textColor={'white'} textShadow="0 0 20px black">
               {slides[currentSlide].heading}
             </Text>
           </motion.div>
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 3 }}>
-            <Text fontSize={'3xl'} fontWeight={'medium'} textColor={'white'} textShadow="0 0 20px black" mb={150}>
+            <Text fontSize={{base: 'lg', md: '3xl'}} fontWeight={'medium'} textColor={'white'} textShadow="0 0 20px black" mb={150}>
               {slides[currentSlide].description}
             </Text>
           </motion.div>
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 4 }}>
             <Link href={slides[currentSlide].href} style={{ textDecoration: 'none' }}>
-              <Button color="white" bg={'teal.600'}>{slides[currentSlide].button}</Button>
+              <Button size={{base: 'sm'}} color="white" bg={'teal.600'}>{slides[currentSlide].button}</Button>
             </Link>
           </motion.div>
         </Flex>

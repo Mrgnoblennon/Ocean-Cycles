@@ -32,14 +32,14 @@ const About = ( { pageTitle }) => {
       <SubHeader pageTitle={"Get to Know Us"}/>
 
       
-      <Flex width={"100%"} minHeight={800} p={70} direction={"column"} align={"center"}>
+      <Box width={"100%"} minHeight={800} p={{base: 30, md: 70}}>
         
         {/* Welcome Box */}
-        <Flex align={"center"} justifyContent={"center"} mb={100}>
+        <Flex align={"center"} justifyContent={{md: "center"}} direction={{base: "column", md: "row"}} mb={100}>
 
-          <Text fontSize={"2xl"} width={900} mr={400}>
+          <Text fontSize={{base: "md", md: "2xl"}} width={{base: 300, md: 900}} mr={{md: 400}} mb={{base: 50, md: 0}}>
 
-            <Heading mb={10}>
+            <Heading fontSize={{base: "xl", md: "4xl"}} mb={10}>
               Welcome
             </Heading>
 
@@ -49,16 +49,16 @@ const About = ( { pageTitle }) => {
             beauty of Perth and its surroundings.
           </Text>
 
-          <Carousel images={images1} intervalDuration={8000} imageSize={250} /> 
+          <Carousel images={images1} intervalDuration={8000} imageSize={{base: 200 ,md: 250}}/> 
           
         </Flex>
 
         {/* Our Mission Box */}
-        <Flex align={"center"} mb={100}>
+        <Flex align={"center"} justifyContent={{md: "center"}} direction={{base: "column", md: "row"}} mb={100}>
 
-          <Text fontSize={"2xl"} width={900} mr={400}>
+          <Text fontSize={{base: "md", md: "2xl"}} width={{base: 300, md: 900}} mr={{md: 400}} mb={{base: 50, md: 0}}>
 
-          <Heading mb={10}>
+          <Heading fontSize={{base: "xl", md: "4xl"}} mb={10}>
             Our Mission
           </Heading>
            
@@ -69,15 +69,15 @@ const About = ( { pageTitle }) => {
 
           </Text>
           
-          <Carousel images={images2} intervalDuration={8000} imageSize={250}/> 
+          <Carousel images={images2} intervalDuration={8000} imageSize={{base: 200 ,md: 250}}/> 
         </Flex>
 
         {/* Discover Freo box */}
-        <Flex align={"center"}>
+        <Flex align={"center"} justifyContent={{md: "center"}} direction={{base: "column", md: "row"}}>
 
-          <Text fontSize={"2xl"} width={900} mr={400}>
+          <Text fontSize={{base: "md", md: "2xl"}} width={{base: 300, md: 900}} mr={{md: 400}} mb={{base: 50, md: 0}}>
 
-          <Heading mb={10}>
+          <Heading fontSize={{base: "xl", md: "4xl"}} mb={10}>
             Discover Fremantle on Two Wheels
           </Heading>
            
@@ -87,17 +87,13 @@ const About = ( { pageTitle }) => {
 
           </Text>
           
-          <Carousel images={images3} intervalDuration={8000} imageSize={250}/> 
+          <Carousel images={images3} intervalDuration={8000} imageSize={{base: 200 ,md: 250}}/> 
         </Flex>
 
-        {/*  */}
-        <Text></Text>
 
-      </Flex>
+      </Box>
     </div>
   );
 };
 
 export default About;
-
-<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="18.19999999999999" role="progressbar" class="css-6f2xij" style="width: 18.2%;"></div>

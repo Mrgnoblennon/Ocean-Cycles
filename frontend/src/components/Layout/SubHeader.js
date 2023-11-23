@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 const SubHeader = ({ pageTitle }) => {
   return (
-    <Box bg="gray.600" color="white" height={100} mb={100}>
+    <Box bg="gray.600" color="white" height={{base: 70, md: 100}} mb={{base: 70, md: 100}} width={"100%"}>
 
       <motion.div
       initial={{ opacity: 0 }}
@@ -12,7 +12,7 @@ const SubHeader = ({ pageTitle }) => {
       transition={{delay : 0.5}}
       >
         <Flex flexDirection={"column"} alignItems={"center"} >
-        <Text fontSize={"3xl"} mt={6}>
+        <Text fontSize={{base: "lg", md: "3xl"}} mt={6}>
           {pageTitle}
         </Text>
         </Flex>   
