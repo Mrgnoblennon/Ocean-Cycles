@@ -10,7 +10,7 @@ const Home = () => {
 
     <div>
 
-    <Slider/>
+    <Slider height={{base: 700}}/>
 
     <Box width={"100%"} minHeight={800} px={{base: 30 , md: 100}}>
       

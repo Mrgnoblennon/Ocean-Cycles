@@ -80,7 +80,7 @@ const Slider = () => {
 
         <Flex direction={'column'} alignItems={'center'} position={'absolute'} top={{base: 40, md: 80}} left={{base: '22%', md: '30%'}}>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }}>
-            <Text fontSize={{base: '4xl', md: '9xl'}} fontWeight={'medium'} textColor={'white'} textShadow="0 0 20px black">
+            <Text fontSize={{base: '4xl', md: '9xl'}} fontWeight={'bold'} textColor={'white'} textShadow="0 0 20px black">
               {slides[currentSlide].heading}
             </Text>
           </motion.div>
