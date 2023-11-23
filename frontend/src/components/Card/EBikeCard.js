@@ -3,6 +3,7 @@ import { Box, Text, Image, TableContainer, Thead, Tr, Th, Table, Tbody, Td } fro
 
 const EBikeCard = (props) => {
   const {
+    model,
     imageSrc,
     pedalAssistance,
     gears,
@@ -26,7 +27,7 @@ const EBikeCard = (props) => {
           <Thead>
             <Tr>
               <Th fontSize={"xl"}>Model</Th>
-              <Th fontSize={"xl"}>TOUR</Th>
+              <Th fontSize={"xl"}>{model}</Th>
             </Tr>
           </Thead>
           <Tbody>

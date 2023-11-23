@@ -5,12 +5,24 @@ import { motion, AnimatePresence } from 'framer-motion';
 import SubHeader from '../Layout/SubHeader';
 import Carousel from '../Animation/Carousel';
 
-const images = [
-  'https://framerusercontent.com/images/8tL9Ugx1oNnZz0n5DhdCUMZa88.jpg?scale-down-to=512',
-  'https://framerusercontent.com/images/cXOVRvtKBz4ycf04v44oZbVFpU.jpg?scale-down-to=512',
-  'https://framerusercontent.com/images/Eg5cXFrMatm4lGzj0KpJTnnTp0.jpg?scale-down-to=512',
+const images1 = [
+  'https://static.wixstatic.com/media/3938b5_1e503550dc0f4f869627f1776ecac6f6~mv2.jpg/v1/fill/w_2500,h_2363,al_c/3938b5_1e503550dc0f4f869627f1776ecac6f6~mv2.jpg',
+  'https://twa.imgix.net/https%3A%2F%2Fassets.atdw-online.com.au%2Fimages%2Fc332cd36578f6de7f6d7d4c88366a883.jpeg%3Frect%3D0%2C133%2C2449%2C1378%26rot%3D360?auto=format&h=405&w=720&fit=crop&crop=edges&q=75&s=82efd4c531a3b907f48c8eca134a5026',
+  'https://www.fremantleports.com.au/images/default-source/news/0062-fremantle-ports---1000.jpg?sfvrsn=457d3f22_0',
   // Add more image URLs as needed
 ];
+
+const images2 = [
+  'https://images.unsplash.com/photo-1620802051782-725fa33db067?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZWJpa2V8ZW58MHx8MHx8fDA%3D',
+  'https://wikiaustralia.com/wp-content/uploads/2011/07/shutterstock_1874213947.jpg',
+  'https://media.licdn.com/dms/image/C561BAQEvwBunOekw-Q/company-background_10000/0/1649225652520/city_of_fremantle_cover?e=2147483647&v=beta&t=JkbjokN3IlLJ8UwIwwHAKo3Bo5PLvHag9-HXgAvaf8U'
+]
+
+const images3 = [
+  'https://beyondreticulation.com.au/wp-content/uploads/2021/09/reticulation-repairs-near-Fremantle.jpg',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiC9Wj6i3iapsDbD0xA0Z8Gxv9xptP1XWt5A&usqp=CAU',
+  'https://images.luxuryescapes.com/q_auto:good/gb7x5d2d3w2hnujught'
+]
 
 const About = ( { pageTitle }) => {
 
@@ -37,7 +49,7 @@ const About = ( { pageTitle }) => {
             beauty of Perth and its surroundings.
           </Text>
 
-          <Carousel images={images} intervalDuration={8000} imageSize={250} /> 
+          <Carousel images={images1} intervalDuration={8000} imageSize={250} /> 
           
         </Flex>
 
@@ -57,7 +69,7 @@ const About = ( { pageTitle }) => {
 
           </Text>
           
-          <Carousel images={images} intervalDuration={8000} imageSize={250}/> 
+          <Carousel images={images2} intervalDuration={8000} imageSize={250}/> 
         </Flex>
 
         {/* Discover Freo box */}
@@ -75,7 +87,7 @@ const About = ( { pageTitle }) => {
 
           </Text>
           
-          <Carousel images={images} intervalDuration={8000} imageSize={250}/> 
+          <Carousel images={images3} intervalDuration={8000} imageSize={250}/> 
         </Flex>
 
         {/*  */}

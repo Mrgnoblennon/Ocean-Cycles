@@ -47,7 +47,7 @@ const Slider = () => {
   }, [currentSlide]);
 
   return (
-    <Box bg={'gray.500'} height="auto" mb={200} position="relative">
+    <Box height="auto" mb={200} position="relative">
       <AnimatePresence mode="wait">
       <motion.div
           key={currentSlide}
@@ -57,15 +57,15 @@ const Slider = () => {
             height: '1000px',
             overflow: 'hidden',
           }}
-          initial={{ x: currentSlide === 0 ? 0 : '100%' }}
+          initial={{ x: '100%' }}
           animate={{ x: 0 }}
-          exit={{ x: currentSlide === slides.length - 1 ? '-100%' : '100%' }}
+          exit={{opacity: 0}}
           transition={{ ease: 'easeInOut', duration: 0.5 }}
         >
           <Image
             src={slides[currentSlide].image}
             alt={`Slide ${currentSlide + 1}`}
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            style={{ width: '100%', height: '100%', objectFit: 'cover'}}
           />
           <Box
             position="absolute"

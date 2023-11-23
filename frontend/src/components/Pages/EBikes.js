@@ -15,6 +15,7 @@ const EBikes = ({ pageTitle }) => {
 
           <EBikeCard
            imageSrc="https://www.oceancycles.com.au/wp-content/uploads/2020/11/tour-up-1-1024x649.jpg"
+           model="Tour"
            pedalAssistance="5 levels"
            gears="7x3 speeds"
            brakes="Disc"
@@ -32,6 +33,7 @@ const EBikes = ({ pageTitle }) => {
 
           <EBikeCard
            imageSrc="https://www.oceancycles.com.au/wp-content/uploads/2020/11/suv-up-1024x649.jpg"
+           model="SUV"
            pedalAssistance="5 levels"
            gears="7x3 speeds"
            brakes="Disc"
@@ -49,6 +51,7 @@ const EBikes = ({ pageTitle }) => {
           
           <EBikeCard
            imageSrc="https://www.oceancycles.com.au/wp-content/uploads/2020/11/hipster-1-1024x649.jpg"
+           model="Hipster"
            pedalAssistance="5 levels"
            gears="7 speeds"
            brakes="Disc"
