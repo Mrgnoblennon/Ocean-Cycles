@@ -13,13 +13,14 @@ const Contact = ({ pageTitle }) => {
     <div>
       <SubHeader pageTitle={"Contact Us"}/>
 
-      <Flex width={"100%"} minHeight={800} p={70} justify={"center"}>
+      <Flex width={"100%"} minHeight={800} px={{base: 30 , md: 100}} justify={"center"} direction={{base: "column", md: "row"}}>
 
-        <Box width={800} minHeight={300}  mr={70}>
+        {/* Overall size */}
+        <Box width={{base: 200, md: 800}} mr={{base: 0, md: 70}}   mb={{base: "70px", md: 0}}>
           <ContactInfo/>
         </Box>
         
-        <Box width={800} minHeight={300}>
+        <Box width={{base: 300, md: 800}} minHeight={300}>
           <ContactForm/>
         </Box>
 
