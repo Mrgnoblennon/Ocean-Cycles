@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const bikeScema = new Schema({
+const bikeSchema = new Schema({
   model: {
     type: String,
     required: true,
@@ -12,12 +12,5 @@ const bikeScema = new Schema({
 });
 
 const Bike = model('Bike', bikeSchema);
-
-const newBike = new Bike({
-    model: 'Example Model',
-    quantity: 5,
-  });
-  
-  newBike.save();
 
 module.exports = Bike;

@@ -1,14 +1,23 @@
 const express = require('express');
-const connectToMongoDB = require('./config/connection'); // Path to your MongoDB connection file
+const connectDB = require('./config/connection');
+const Bike = require('./models/Bike');
 
 const app = express();
+const PORT = 3000;
+
+require('dotenv').config();
 
 // Connect to MongoDB
-connectToMongoDB();
+connectDB();
 
-// Define your routes or other middleware here
+// Middleware
+app.use(express.json());
 
-const PORT = process.env.PORT || 3001;
+// Routes
+// Add your routes here
+
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+  
