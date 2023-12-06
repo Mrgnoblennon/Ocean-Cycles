@@ -5,12 +5,8 @@ const bikeSchema = new Schema({
     type: String,
     required: true,
   },
-  quantity: {
-    type: Number,
-    required: true
-  },
 });
 
 const Bike = model('Bike', bikeSchema);
 
-module.exports = Bike;
+module.exports = Bike; 

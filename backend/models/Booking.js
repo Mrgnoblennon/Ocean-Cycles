@@ -2,11 +2,6 @@
 const { Schema, model } = require('mongoose');
 
 const bookingSchema = new Schema({
-  bike: {
-    type: Schema.Types.ObjectId,
-    ref: 'Bike',
-    required: true,
-  },
   startDate: {
     type: Date,
     required: true,
@@ -15,9 +10,27 @@ const bookingSchema = new Schema({
     type: Date,
     required: true,
   },
+  bikes: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Bike',
+    required: true,
+  }],
   totalAmount: {
     type: Number,
     required: true,
+  },
+  deposit: {
+    type: Number,
+    required: true,
+  },
+  isDepositPaid: {
+    type: Boolean,
+    default: false,
+  },
+  paymentStatus: {
+    type: String,
+    enum: ['Pending', 'Paid'],
+    default: 'Pending',
   },
   customer: {
     type: Schema.Types.ObjectId,

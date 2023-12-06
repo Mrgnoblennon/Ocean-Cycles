@@ -14,20 +14,6 @@ const customerSchema = new Schema({
     type: String,
     required: true,
   },
-  creditCardDetails: {
-    cardNumber: {
-      type: String,
-      required: true,
-    },
-    expirationDate: {
-      type: String,
-      required: true,
-    },
-    cvv: {
-      type: String,
-      required: true,
-    },
-  },
   email: {
     type: String,
     required: true,
