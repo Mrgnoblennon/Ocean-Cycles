@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, Heading, VStack, HStack, FormControl, FormLabel, Input, Textarea, Button, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Text, Heading, HStack, FormControl, FormLabel, Input, Textarea, Button, useBreakpointValue } from '@chakra-ui/react';
 
 const ContactForm = () => {
 
