@@ -2,23 +2,15 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+
+  scalar Date
+
   type Bike {
     _id: ID!
     model: String!
   }
 
-  type Customer {
-    _id: ID!
-    firstName: String!
-    lastName: String!
-    mobileNumber: String!
-    email: String!
-    address: Address
-    dateOfBirth: String
-    emergencyContact: EmergencyContact
-    notes: String
-  }
-
+  
   type Address {
     street: String
     city: String
@@ -31,7 +23,7 @@ const typeDefs = gql`
     relationship: String
     phoneNumber: String
   }
-
+  
   type Booking {
     _id: ID!
     temporaryBookingId: String!
@@ -43,6 +35,18 @@ const typeDefs = gql`
     isDepositPaid: Boolean!
     paymentStatus: String!
     customer: Customer
+  }
+  
+  type Customer {
+    _id: ID
+    firstName: String!
+    lastName: String!
+    mobileNumber: String!
+    email: String!
+    address: Address
+    dateOfBirth: Date
+    emergencyContact: EmergencyContact
+    notes: String
   }
 
   input BikeInput {
@@ -79,6 +83,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
+    addCustomer(input: CustomerInput!): Customer
+
     initiateBooking(bikesInput: [BikeInput]!, startDate: String!, endDate: String!, totalAmount: Float!, deposit: Float!): Booking
     completeBooking(temporaryBookingId: String!, customer: CustomerInput!): Booking
   }

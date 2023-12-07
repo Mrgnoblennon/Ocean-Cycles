@@ -61,7 +61,7 @@ const Book = ({ pageTitle}) => {
           <Text>Deposit payment required: {deposit}</Text>
         </Box>
 
-        <Button mb={20}>Book Now</Button>
+        <Button mb={20} colorScheme='teal'>Book Now</Button>
 
         <CustomerForm/>
 

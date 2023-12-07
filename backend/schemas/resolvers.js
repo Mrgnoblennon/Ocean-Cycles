@@ -1,33 +1,51 @@
 // resolvers.js
 const { ObjectId } = require('mongoose').Types;
-const { mongoose } =require('mongoose');
 const Bike = require('../models/Bike');
 const Customer = require('../models/Customer');
 const Booking = require('../models/Booking');
 
+const { GraphQLScalarType, Kind } = require('graphql');
+
+const dateScalar = new GraphQLScalarType({
+  name: 'Date',
+  description: 'Date custom scalar type',
+  serialize(value) {
+    if (value instanceof Date) {
+      return value.getTime(); // Convert outgoing Date to integer for JSON
+    }
+    throw Error('GraphQL Date Scalar serializer expected a `Date` object');
+  },
+  parseValue(value) {
+    if (typeof value === 'number') {
+      return new Date(value); // Convert incoming integer to Date
+    }
+    throw new Error('GraphQL Date Scalar parser expected a `number`');
+  },
+  parseLiteral(ast) {
+    if (ast.kind === Kind.INT) {
+      // Convert hard-coded AST string to integer and then to Date
+      return new Date(parseInt(ast.value, 10));
+    }
+    // Invalid hard-coded value (not an integer)
+    return null;
+  },
+});
+
 const resolvers = {
+  Date: dateScalar, // Add the Date scalar resolver
+  
   Query: {
     getBikes: async () => await Bike.find(),
     getBooking: async (_, { bookingId }) => await Booking.findById(bookingId),
   },
   Mutation: {
-    addBike: async (_, { model, quantity }) => {
+    addCustomer: async (_, { input }) => {
       try {
-        // Create a new bike instance
-        const newBike = new Bike({
-          model,
-          quantity,
-          // Add other bike fields as needed
-        });
-
-        // Save the new bike to the database
-        const savedBike = await newBike.save();
-
-        // Return the saved bike data
-        return savedBike;
+        const customer = new Customer(input);
+        const result = await customer.save();
+        return result;
       } catch (error) {
-        console.error('Error adding bike:', error);
-        throw new Error('Failed to add bike. Please try again.');
+        throw new Error(`Error adding customer: ${error.message}`);
       }
     },
     initiateBooking: async (_, { bikesInput, startDate, endDate, totalAmount, deposit }) => {
