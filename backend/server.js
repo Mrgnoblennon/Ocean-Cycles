@@ -2,13 +2,16 @@
 const express = require('express');
 const connectDB = require('./config/connection');
 const { ApolloServer } = require('apollo-server-express');
+require('dotenv').config();
+
 const typeDefs = require('./schemas/typeDefs');
 const resolvers = require('./schemas/resolvers');
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-require('dotenv').config();
+const app = express();
+const PORT = process.env.PORT;
+
 
 // Connect to MongoDB
 connectDB();
@@ -21,6 +24,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: ({ req }) => ({
+    stripe,
     // Add any context data you need here
   }),
 });

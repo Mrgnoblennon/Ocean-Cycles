@@ -1,6 +1,6 @@
 
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
 import client from './utils/apolloClient';
 
@@ -23,16 +23,16 @@ function App() {
 
     <div>
       <ApolloProvider client={client}>
-        <Header/>
-          <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/about" element={<About/>}/>
-            <Route path="/ebikes" element={<EBikes/>}/>
-            <Route path="/prices" element={<Prices/>}/>
-            <Route path="/book" element={<Book/>}/>
-            <Route path="/Contact" element={<Contact/>}/>
-          </Routes>
-        <Footer/>
+          <Header/>
+            <Routes>
+              <Route path="/" element={<Home/>}/>
+              <Route path="/about" element={<About/>}/>
+              <Route path="/ebikes" element={<EBikes/>}/>
+              <Route path="/prices" element={<Prices/>}/>
+              <Route path="/book" element={<Book/>}/>
+              <Route path="/Contact" element={<Contact/>}/>
+            </Routes>
+          <Footer/>       
       </ApolloProvider>
     </div>
  

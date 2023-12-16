@@ -24,3 +24,11 @@ export const ADD_CUSTOMER = gql`
     }
   }
 `;
+
+export const CREATE_PAYMENT_INTENT = gql `
+  mutation CreatePaymentIntent($amount: Int!, $currency: String!) {
+    createPaymentIntent(amount: $amount, currency: $currency) {
+      clientSecret
+    }
+  }  
+`;

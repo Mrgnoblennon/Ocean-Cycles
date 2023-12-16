@@ -49,6 +49,10 @@ const typeDefs = gql`
     notes: String
   }
 
+  type PaymentIntentResult {
+    clientSecret: String!
+  }
+
   input BikeInput {
     bikeId: ID!
   }
@@ -84,6 +88,7 @@ const typeDefs = gql`
 
   type Mutation {
     addCustomer(input: CustomerInput!): Customer
+    createStripePaymentIntent(amount: Int!, currency: String!): String
 
     initiateBooking(bikesInput: [BikeInput]!, startDate: String!, endDate: String!, totalAmount: Float!, deposit: Float!): Booking
     completeBooking(temporaryBookingId: String!, customer: CustomerInput!): Booking

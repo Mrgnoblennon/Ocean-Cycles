@@ -4,6 +4,8 @@ const Bike = require('../models/Bike');
 const Customer = require('../models/Customer');
 const Booking = require('../models/Booking');
 
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
 const { GraphQLScalarType, Kind } = require('graphql');
 
 const dateScalar = new GraphQLScalarType({
@@ -109,6 +111,19 @@ const resolvers = {
       } catch (error) {
         console.error('Error completing booking:', error);
         throw new Error('Failed to complete booking. Please try again.');
+      }
+    },
+     createStripePaymentIntent: async (_, { amount, currency }) => {
+      try {
+        const paymentIntent = await stripe.paymentIntents.create({
+          amount,
+          currency,
+        });
+
+        return paymentIntent.client_secret;
+      } catch (error) {
+        console.error('Error creating PaymentIntent:', error);
+        throw new Error('Failed to create PaymentIntent');
       }
     },
   },
