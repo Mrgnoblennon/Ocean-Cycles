@@ -113,15 +113,22 @@ const resolvers = {
         throw new Error('Failed to complete booking. Please try again.');
       }
     },
-     createStripePaymentIntent: async (_, { amount, currency }) => {
+     createPaymentIntent: async (_, { amount, currency }) => {
       try {
+        // Create a PaymentIntent using the Stripe API
         const paymentIntent = await stripe.paymentIntents.create({
           amount,
           currency,
+          // Other relevant options, such as metadata, description, etc.
         });
 
-        return paymentIntent.client_secret;
-      } catch (error) {
+        console.log('Client Secret:', paymentIntent.client_secret);
+
+        // Return the client secret as part of the response
+        return {
+          clientSecret: paymentIntent.client_secret,
+        };
+      } catch (error) { 
         console.error('Error creating PaymentIntent:', error);
         throw new Error('Failed to create PaymentIntent');
       }
