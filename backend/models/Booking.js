@@ -13,7 +13,6 @@ const bookingSchema = new Schema({
   bikes: [{
     type: Schema.Types.ObjectId,
     ref: 'Bike',
-    required: true,
   }],
   totalAmount: {
     type: Number,

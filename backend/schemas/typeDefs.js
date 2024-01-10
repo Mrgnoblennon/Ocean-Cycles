@@ -8,6 +8,7 @@ const typeDefs = gql`
   type Bike {
     _id: ID!
     model: String!
+    isAvailable: Boolean
   }
 
   
@@ -26,15 +27,14 @@ const typeDefs = gql`
   
   type Booking {
     _id: ID!
-    temporaryBookingId: String!
-    bikes: [Bike]!
-    startDate: String!
-    endDate: String!
+    startDate: Date!
+    endDate: Date!
+    bikes: [Bike!]!
     totalAmount: Float!
     deposit: Float!
     isDepositPaid: Boolean!
     paymentStatus: String!
-    customer: Customer
+    customer: Customer!
   }
   
   type Customer {
@@ -55,6 +55,13 @@ const typeDefs = gql`
 
   input BikeInput {
     bikeId: ID!
+  }
+
+  input CreateBookingInput {
+    startDate: Date!
+    endDate: Date!
+    bikes: [ID!]!
+    customer: ID!
   }
 
   input CustomerInput {
@@ -82,15 +89,20 @@ const typeDefs = gql`
   }
 
   type Query {
-    getBikes: [Bike]!
+    getAllBikes: [Bike]
+    getAvailableBikes: [Bike]
+    getBikeById(id: ID!): Bike
     getBooking(bookingId: ID!): Booking
   }
 
   type Mutation {
     addCustomer(input: CustomerInput!): Customer
-
     createPaymentIntent(amount: Int!, currency: String!): PaymentIntentResult
+    updateBikeAvailability(id: ID!, isAvailable: Boolean!): Bike
 
+
+    createBooking(input: CreateBookingInput!): Booking
+    
     initiateBooking(bikesInput: [BikeInput]!, startDate: String!, endDate: String!, totalAmount: Float!, deposit: Float!): Booking
     completeBooking(temporaryBookingId: String!, customer: CustomerInput!): Booking
   }

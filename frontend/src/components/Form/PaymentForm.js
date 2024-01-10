@@ -4,17 +4,6 @@ import { useMutation } from '@apollo/client';
 import { CREATE_PAYMENT_INTENT } from '../../utils/mutations';
 import { Box, Button, Text, Input, Heading } from '@chakra-ui/react';
 
-const CARD_ELEMENT_OPTIONS = {
-  style: {
-    base: {
-      fontSize: '16px',
-      border: '1px solid #ced4da', // Add a border to create an outline box
-      borderRadius: '4px', // Add border-radius for rounded corners
-      padding: '10px', // Add padding for spacing
-    },
-  },
-};
-
 const PaymentForm = () => {
   const stripe = useStripe();
   const elements = useElements();
@@ -75,17 +64,17 @@ const PaymentForm = () => {
 
       <Heading fontSize={"xl"}>
         Card Number
-        <CardNumberElement options={CARD_ELEMENT_OPTIONS}/>
+        <CardNumberElement/>
       </Heading>
 
       <Heading fontSize={"xl"}>
         Card Expiry
-        <CardExpiryElement options={CARD_ELEMENT_OPTIONS} />
+        <CardExpiryElement />
       </Heading>
 
       <Heading fontSize={"xl"}>
         CVC
-        <CardCvcElement options={CARD_ELEMENT_OPTIONS} />
+        <CardCvcElement />
       </Heading>
 
       <Heading fontSize={"xl"}>

@@ -76,7 +76,7 @@ const CustomerForm = () => {
   };
 
   return(
-    <Box p={20} boxShadow={"lg"} borderRadius={2} bg={"white"} width={800} height={1700} mb={100}>
+    <Box p={20} boxShadow={"lg"} borderRadius={2} bg={"white"} width={800} height={1700} my={100}>
 
       <Heading fontSize={"3xl"} mb={8} color={"blue.300"}>Customer Form</Heading>
 

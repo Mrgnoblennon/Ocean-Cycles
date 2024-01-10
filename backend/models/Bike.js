@@ -5,6 +5,10 @@ const bikeSchema = new Schema({
     type: String,
     required: true,
   },
+  isAvailable: {
+    type: Boolean,
+    required: true
+  } ,
 });
 
 const Bike = model('Bike', bikeSchema);

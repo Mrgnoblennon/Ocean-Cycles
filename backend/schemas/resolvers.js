@@ -10,26 +10,32 @@ const { GraphQLScalarType, Kind } = require('graphql');
 
 const dateScalar = new GraphQLScalarType({
   name: 'Date',
-  description: 'Date custom scalar type',
+  description: 'Date custom scalar type as dd-mm-yyyy',
+  
+  // Serializes a Date to a string in dd-mm-yyyy format
   serialize(value) {
     if (value instanceof Date) {
-      return value.getTime(); // Convert outgoing Date to integer for JSON
+      return value.toISOString().split('T')[0].split('-').reverse().join('-');
     }
-    throw Error('GraphQL Date Scalar serializer expected a `Date` object');
+    throw new Error('Expected a Date object');
   },
+  
+  // Parses a date string in dd-mm-yyyy format to a Date
   parseValue(value) {
-    if (typeof value === 'number') {
-      return new Date(value); // Convert incoming integer to Date
+    if (typeof value === 'string') {
+      const [day, month, year] = value.split('-').map(Number);
+      return new Date(year, month - 1, day);
     }
-    throw new Error('GraphQL Date Scalar parser expected a `number`');
+    throw new Error('Expected a date string in dd-mm-yyyy format');
   },
+  
+  // Parses AST literals to a Date
   parseLiteral(ast) {
-    if (ast.kind === Kind.INT) {
-      // Convert hard-coded AST string to integer and then to Date
-      return new Date(parseInt(ast.value, 10));
+    if (ast.kind === Kind.STRING) {
+      const [day, month, year] = ast.value.split('-').map(Number);
+      return new Date(year, month - 1, day);
     }
-    // Invalid hard-coded value (not an integer)
-    return null;
+    return null; // Invalid hard-coded value
   },
 });
 
@@ -37,10 +43,60 @@ const resolvers = {
   Date: dateScalar, // Add the Date scalar resolver
   
   Query: {
-    getBikes: async () => await Bike.find(),
     getBooking: async (_, { bookingId }) => await Booking.findById(bookingId),
+    getAllBikes: async () => {
+      return await Bike.find({});
+    },
+    getAvailableBikes: async () => {
+      return await Bike.find({ isAvailable: true });
+    },
+    getBikeById: async (_, { id }) => {
+      return await Bike.findById(id);
+    }
   },
   Mutation: {
+    //addBike: async (_, { model, isAvailable }) => {
+    //  const newBike = new Bike({ model, isAvailable });
+    //  return await newBike.save();
+    //},
+    createBooking: async (_, { input }) => {
+      const { startDate, endDate, bikes, customer } = input;
+    
+      // Fixed values for financial fields
+      const fixedTotalAmount = 100.00; // Example value
+      const fixedDeposit = 20.00; // Example value
+    
+      // Create a new booking object
+      const newBooking = new Booking({
+        startDate,
+        endDate,
+        bikes,
+        customer,
+        totalAmount: fixedTotalAmount,
+        deposit: fixedDeposit,
+        isDepositPaid: true,
+        paymentStatus: 'Paid'
+      });
+    
+      // Save the booking to the database
+      await newBooking.save();
+    
+      // Populate customer and bike data
+      const populatedBooking = await Booking.findById(newBooking._id)
+        .populate({
+          path: 'customer',
+          select: 'firstName' // Assuming 'firstName' is a field in the 'Customer' model
+        })
+        .populate({
+          path: 'bikes',
+          select: 'model' // Assuming 'model' is a field in the 'Bike' model
+        });
+    
+      return populatedBooking;
+    },
+    updateBikeAvailability: async (_, { id, isAvailable }) => {
+      return await Bike.findByIdAndUpdate(id, { isAvailable }, { new: false });
+    },
     addCustomer: async (_, { input }) => {
       try {
         const customer = new Customer(input);
@@ -48,69 +104,6 @@ const resolvers = {
         return result;
       } catch (error) {
         throw new Error(`Error adding customer: ${error.message}`);
-      }
-    },
-    initiateBooking: async (_, { bikesInput, startDate, endDate, totalAmount, deposit }) => {
-      try {
-        // Generate a temporary booking ID
-        const temporaryBookingId = generateTemporaryBookingId();
-    
-        // Log bikesInput data
-        console.log('bikesInput data:', bikesInput);
-    
-        // Create a new booking document with the provided details
-        const newBooking = new Booking({
-          temporaryBookingId,
-          bikes: bikesInput.map(bike => {
-            // Log each bike being processed
-            console.log('Processing bike:', bike.bikeId);
-    
-            // Assuming bike.bikeId is a valid hexadecimal string or ObjectId
-            return new ObjectId(bike.bikeId);
-          }),
-          startDate,
-          endDate,
-          totalAmount,
-          deposit,
-          isDepositPaid: false,
-          paymentStatus: 'Pending',
-        });
-    
-        // Save the new booking document to the database
-        const savedBooking = await newBooking.save();
-    
-        // Return the booking document with the temporary booking ID
-        return savedBooking;
-      } catch (error) {
-        console.error('Error initiating booking:', error);
-        throw new Error('Failed to initiate booking. Please try again.');
-      }
-    },
-    completeBooking: async (_, { temporaryBookingId, customer }) => {
-      try {
-        // Find the booking document using the temporary booking ID
-        const bookingToUpdate = await Booking.findOne({ temporaryBookingId });
-
-        // If the booking is not found, throw an error
-        if (!bookingToUpdate) {
-          throw new Error('Booking not found. Please initiate a new booking.');
-        }
-
-        // Create a new customer document with the provided details
-        const newCustomer = new Customer(customer);
-
-        // Save the new customer document to the database
-        const savedCustomer = await newCustomer.save();
-
-        // Update the booking document with the customer details and save to the database
-        bookingToUpdate.customer = savedCustomer._id;
-        const updatedBooking = await bookingToUpdate.save();
-
-        // Return the finalized booking document
-        return updatedBooking;
-      } catch (error) {
-        console.error('Error completing booking:', error);
-        throw new Error('Failed to complete booking. Please try again.');
       }
     },
      createPaymentIntent: async (_, { amount, currency }) => {
@@ -135,11 +128,5 @@ const resolvers = {
     },
   },
 };
-
-// Function to generate a temporary booking ID (you may use a library for this)
-function generateTemporaryBookingId() {
-  // Sample implementation using a simple timestamp-based ID
-  return `TMP_${Date.now()}`;
-}
 
 module.exports = resolvers;
